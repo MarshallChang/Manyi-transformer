@@ -1,4 +1,6 @@
 {
+  "name": "gltf-transform-electron-tool",
+  "version": "1.0.0",
   "description": "A tool for gltf/glb models compression.",
   "keywords": [
     "glTF",
@@ -233,7 +235,7 @@
     "publish": {
       "provider": "github",
       "owner": "MarshallChang",
-      "repo": "electron-react-boilerplate"
+      "repo": "gltf-transform-electron-tool"
     }
   },
   "devEngines": {
