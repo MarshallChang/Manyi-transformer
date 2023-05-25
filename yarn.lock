@@ -4166,6 +4166,11 @@ dotenv@^9.0.2:
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-9.0.2.tgz"
   integrity sha512-I9OvvrHp4pIARv4+x9iuewrWycX6CcZtoAu1XrzPxc5UygMJXJZYmBsynku8IkrJwgypE5DGNjDPmPRhDCptUg==
 
+draco3dgltf@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/draco3dgltf/-/draco3dgltf-1.5.6.tgz#4bc4587238a506c8dca2713274c24dfccc2375c2"
+  integrity sha512-wCKFfJhRB2lkAV/dzlKs+EmHSoI3x8w4Z8yBpkzLIF9GAvjh6jk90jomC13k/DLVFTJSesm8LHg9ok6p3OVfVA==
+
 duplexer@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"

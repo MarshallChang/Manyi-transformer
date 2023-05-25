@@ -90,6 +90,7 @@
     }
   },
   "dependencies": {
+    "draco3dgltf": "^1.5.6",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.3.0",
