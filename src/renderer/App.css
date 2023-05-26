@@ -17,7 +17,7 @@ body {
   align-items: center;
 }
 
-button {
+/* button {
   background-color: white;
   padding: 10px 20px;
   border-radius: 10px;
@@ -34,8 +34,8 @@ button {
 button:hover {
   transform: scale(1.05);
   opacity: 1;
-}
-
+} */
+/*
 li {
   list-style: none;
 }
@@ -50,4 +50,4 @@ a {
 a:hover {
   opacity: 1;
   text-decoration: none;
-}
+} */

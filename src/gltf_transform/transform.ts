@@ -23,6 +23,7 @@ export type configType = {
   weld?: number;
   ratio?: number;
   error?: number;
+  targetFormat?: 'webp' | 'jpeg' | 'png' | 'avif' | undefined;
 };
 
 async function transform(
@@ -53,7 +54,7 @@ async function transform(
     prune(),
     // Resize and convert textures (using webp and sharp)
     textureCompress({
-      targetFormat: 'webp',
+      targetFormat: config.targetFormat ?? 'webp',
       encoder: sharp,
       resize: [resolution, resolution],
     }),

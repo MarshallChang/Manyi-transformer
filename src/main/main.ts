@@ -32,14 +32,20 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
-ipcMain.handle('chooseFile', async (event, arg) => {
-  console.log(event, arg);
+ipcMain.handle('chooseFile', async () => {
+  const { filePaths } = await dialog.showOpenDialog(mainWindow!, {
+    filters: [{ name: 'glb', extensions: ['glb', 'gltf'] }],
+  });
 
-  const { filePaths } = await dialog.showOpenDialog(mainWindow!);
-  const { name, dir } = path.parse(filePaths[0]);
+  return filePaths[0];
+});
+
+ipcMain.handle('transform', async (event, arg) => {
+  const { file, config } = arg;
+  const { name, dir } = path.parse(file);
   const transformOut = path.join(`${name}-transformed.glb`);
   const transformOutFile = path.join(dir, transformOut);
-  await transform(filePaths[0], transformOutFile, {});
+  await transform(file, transformOutFile, config);
   shell.showItemInFolder(transformOutFile);
   return 'success';
 });
@@ -87,8 +93,8 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
-    x: 100,
-    y: 100,
+    // x: 100,
+    // y: 100,
     alwaysOnTop: false,
     webPreferences: {
       preload: app.isPackaged
