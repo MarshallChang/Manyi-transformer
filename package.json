@@ -90,8 +90,6 @@
     }
   },
   "dependencies": {
-    "@gltf-transform/core": "^3.3.6",
-    "@gltf-transform/extensions": "^3.3.6",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "draco3dgltf": "^1.5.6",
@@ -178,7 +176,7 @@
   "build": {
     "productName": "Manyi Transformer",
     "appId": "pub.marshall.ManyiTransformer",
-    "asar": false,
+    "asar": true,
     "asarUnpack": [
       "**\\*.{node,dll}",
       "**/node_modules/sharp/**"
