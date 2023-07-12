@@ -25,13 +25,13 @@ if [[ -z $NO_LOCAL ]]; then
 
   # 换源安装electron#7.1.2
   # 加速国内下载速度 https://blog.tomyail.com/install-electron-slow-in-china/
-  # export ELECTRON_MIRROR="https://registry.npmmirror.com/electron/"
-  # export ELECTRON_CUSTOM_DIR=${electron}
+  export ELECTRON_MIRROR="https://registry.npmmirror.com/electron/"
+  export ELECTRON_CUSTOM_DIR=${electron}
 
   # 换源安装sharp
   # export SHARP_DIST_BASE_URL="https://registry.npmmirror.com/sharp-libvips/v8.8.1/"
 
-  # npm i electron@${electron} -D -E
+  npm i electron@${electron} -D -E
 
   npm i --platform=darwin --arch=x64 sharp@0.32.2 -E
 fi
