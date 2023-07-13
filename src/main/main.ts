@@ -43,7 +43,11 @@ ipcMain.handle('chooseFile', async () => {
 ipcMain.handle('transform', async (event, arg) => {
   const { file, config } = arg;
   const { name, dir } = path.parse(file);
-  const transformOut = path.join(`${name}-transformed.glb`);
+  const transformOut = path.join(
+    `${name}-${(config.targetFormat as string).toUpperCase()}-${
+      config.resolution
+    }.glb`
+  );
   const transformOutFile = path.join(dir, transformOut);
   await transform(file, transformOutFile, config);
   shell.showItemInFolder(transformOutFile);
