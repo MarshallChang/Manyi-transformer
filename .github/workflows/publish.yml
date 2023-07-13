@@ -39,9 +39,9 @@ jobs:
           # This is used for uploading release assets to github
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          if ("${{ matrix.os }}" = "windows-latest"); then
+          if ([["${{ matrix.os }}" = "windows-latest"]]); then
             npm exec electron-builder -- --publish always --win
-          elif ("${{ matrix.os }}" = "macos-latest"); then
+          elif ([["${{ matrix.os }}" = "macos-latest"]]); then
             npm exec electron-builder -- --publish always --mac
           else
             echo "Skipping electron-builder on ${{ matrix.os }}"
