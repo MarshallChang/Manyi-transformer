@@ -6,12 +6,44 @@ on:
       - main
 
 jobs:
-  publish:
+  publish-windows:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [windows-latest]
+
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
+
+      - name: Install Node and NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: Install and build
+        run: |
+          npm install
+          npm run postinstall
+          npm run build
+
+      - name: Publish releases
+        env:
+          # CSC_LINK: ${{ secrets.CSC_LINK }}
+          # CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          # This is used for uploading release assets to github
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm exec electron-builder -- --publish always --win
+          mv dist/lastest.yml dist/lastest-win.yml
+  publish-mac:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest]
 
     steps:
       - name: Checkout git repo
@@ -39,4 +71,5 @@ jobs:
           # This is used for uploading release assets to github
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm exec electron-builder -- --publish always --win
+          npm exec electron-builder -- --publish always --mac
+          mv dist/lastest.yml dist/lastest-mac.yml
