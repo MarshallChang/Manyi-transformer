@@ -37,7 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           npm exec electron-builder -- --publish always --win
-          mv dist/lastest.yml dist/lastest-win.yml
+           mv release/build/lastest.yml release/build/lastest-win.yml
   publish-mac:
     runs-on: ${{ matrix.os }}
 
@@ -72,4 +72,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           npm exec electron-builder -- --publish always --mac
-          mv dist/lastest.yml dist/lastest-mac.yml
+          mv release/build/lastest.yml release/build/lastest-mac.yml
