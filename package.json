@@ -216,6 +216,9 @@
         "nsis"
       ]
     },
+    "nsis": {
+      "oneClick": false
+    },
     "linux": {
       "target": [
         "AppImage"
