@@ -10,7 +10,9 @@
     "transfrom",
     "electron",
     "react",
-    "webpack"
+    "webpack",
+    "gltf-transform",
+    "sharp"
   ],
   "homepage": "https://github.com/MarshallChang/gltf-transform-electron-tool#readme",
   "bugs": {
