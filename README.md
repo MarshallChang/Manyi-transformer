@@ -4,7 +4,7 @@
 
 # Manyi-transformer
 
-![GitHub](https://img.shields.io/github/license/MarshallChang/Manyi-transformer)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/MarshallChang/Manyi-transformer)
 ![GitHub All Releases](https://img.shields.io/github/downloads/MarshallChang/Manyi-transformer/total)
 
