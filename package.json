@@ -1,5 +1,5 @@
 {
-  "name": "gltf-transform-electron-tool",
+  "name": "Manyi-Transformer",
   "version": "1.0.0",
   "description": "A tool for gltf/glb models compression.",
   "keywords": [
@@ -14,13 +14,13 @@
     "gltf-transform",
     "sharp"
   ],
-  "homepage": "https://github.com/MarshallChang/gltf-transform-electron-tool#readme",
+  "homepage": "https://github.com/MarshallChang/Manyi-transformer#readme",
   "bugs": {
-    "url": "https://github.com/MarshallChang/gltf-transform-electron-tool/issues"
+    "url": "https://github.com/MarshallChang/Manyi-transformer/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarshallChang/gltf-transform-electron-tool.git"
+    "url": "git+https://github.com/MarshallChang/Manyi-transformer.git"
   },
   "license": "MIT",
   "author": {
@@ -242,7 +242,7 @@
     "publish": {
       "provider": "github",
       "owner": "MarshallChang",
-      "repo": "gltf-transform-electron-tool"
+      "repo": "Manyi-transformer"
     }
   },
   "devEngines": {

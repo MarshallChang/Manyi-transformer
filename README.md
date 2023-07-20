@@ -1,16 +1,64 @@
-# A tool for glb/gltf compression
+# Manyi-transformer
 
-#### Build on Electron, Electron React Boilerplate, React, glTF-transfrom, react-three-fiber/drei and sharp
+![GitHub](https://img.shields.io/github/license/MarshallChang/Manyi-transformer)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/MarshallChang/Manyi-transformer)
 
-1. To Run this App
+## Introduction
 
+Manyi-transformer is a multi-platform model compression client based on Electron, React, gltf-transform, and sharp. It provides a graphical interface for users to easily compress individual glTF/GLB model files and perform batch compression.
+
+### Key Features
+
+- Support compression of single glTF/GLB model files.
+- Support batch compression of multiple glTF/GLB model files.
+- Provides multi-platform support, running on Windows, macOS, and Linux.
+- Utilizes the gltf-transform library for geometry and texture optimization of models.
+- Uses sharp library for image compression and scaling.
+
+## Installation
+
+Before using, please make sure you have installed [Node.js](https://nodejs.org/).
+
+1. Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/MarshallChang/Manyi-transformer.git
 ```
+
+2. Change into the project directory:
+
+```bash
+cd Manyi-transformer
+```
+
+3. Install dependencies:
+
+```bash
 npm i
+```
+
+## Runing
+
+Use the following command to start the development mode:
+
+```bash
 npm run start
 ```
 
-2. Package:
+## Packaging
 
-```
+Use the following command to build the executable file
+
+```bash
 npm run package
 ```
+
+After building, the executable files will be available in the `release/build` folder.
+
+## Contribution
+
+If you find any bugs or have any suggestions, please contribute your code via Issue or Pull Request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
