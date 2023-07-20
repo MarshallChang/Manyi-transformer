@@ -16,6 +16,7 @@ import {
 } from 'meshoptimizer';
 import draco3d from 'draco3dgltf';
 import sharp from 'sharp';
+import fs from 'fs';
 
 export type configType = {
   resolution?: number;
@@ -76,8 +77,9 @@ async function transform(
   }
 
   await document.transform(...functions);
-
   await io.write(output, document);
+  const stats = fs.statSync(output);
+  return stats.size;
 }
 
 export default transform;

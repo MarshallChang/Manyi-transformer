@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'ipc-example' | 'chooseFile' | 'transform';
+export type Channels = 'transform' | 'chooseFolder';
 
 const electronHandler = {
   ipcRenderer: {
@@ -10,8 +10,6 @@ const electronHandler = {
       ipcRenderer.send(channel, ...args);
     },
     invoke(channel: Channels, ...args: unknown[]) {
-      console.log(...args);
-
       return ipcRenderer.invoke(channel, ...args);
     },
     on(channel: Channels, func: (...args: unknown[]) => void) {
@@ -25,6 +23,14 @@ const electronHandler = {
     },
     once(channel: Channels, func: (...args: unknown[]) => void) {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
+    },
+  },
+  store: {
+    get(key: string) {
+      return ipcRenderer.sendSync('electron-store-get', key);
+    },
+    set(property: string, val: any) {
+      ipcRenderer.send('electron-store-set', property, val);
     },
   },
 };

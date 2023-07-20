@@ -15,11 +15,11 @@
     "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
   },
   "dependencies": {
-    "sharp": "0.32.2",
     "@gltf-transform/core": "^3.3.6",
     "@gltf-transform/extensions": "^3.3.6",
     "@gltf-transform/functions": "^3.3.6",
     "draco3dgltf": "^1.5.6",
-    "meshoptimizer": "^0.19.0"
+    "meshoptimizer": "^0.19.0",
+    "sharp": "^0.32.2"
   }
 }

@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { SelectProps } from 'common';
 
 function classNames(...classes: unknown[]) {
   return classes.filter(Boolean).join(' ');

@@ -9,12 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import transform from '../gltf_transform/transform';
+import './ipcs/index';
 
 class AppUpdater {
   constructor() {
@@ -25,34 +26,6 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
-
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
-});
-
-ipcMain.handle('chooseFile', async () => {
-  const { filePaths } = await dialog.showOpenDialog(mainWindow!, {
-    filters: [{ name: 'glb', extensions: ['glb', 'gltf'] }],
-  });
-
-  return filePaths[0];
-});
-
-ipcMain.handle('transform', async (event, arg) => {
-  const { file, config } = arg;
-  const { name, dir } = path.parse(file);
-  const transformOut = path.join(
-    `${name}-${(config.targetFormat as string).toUpperCase()}-${
-      config.resolution
-    }.glb`
-  );
-  const transformOutFile = path.join(dir, transformOut);
-  await transform(file, transformOutFile, config);
-  shell.showItemInFolder(transformOutFile);
-  return 'success';
-});
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
