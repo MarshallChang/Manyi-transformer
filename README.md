@@ -13,7 +13,7 @@
 Manyi-transformer is a multi-platform model compression client based on Electron, React, gltf-transform, and sharp. It provides a graphical interface for users to easily compress individual glTF/GLB model files and perform batch compression.
 
 <p align="center">
-  <img src="/assets/readme/file.gif" alt="demo" width="100%" />
+  <img src="/assets/readme/demo.gif" alt="demo" width="100%" />
 </p>
 
 ### Key Features
