@@ -1,14 +1,8 @@
-const colors = require('tailwindcss/colors');
-
 module.exports = {
   content: ['./src/renderer/**/*.{js,jsx,ts,tsx,ejs}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        sky: colors.sky,
-        cyan: colors.cyan,
-      },
       backgroundSize: {
         'size-200': '200% 200%',
       },

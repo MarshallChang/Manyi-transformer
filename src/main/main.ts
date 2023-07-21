@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, nativeTheme, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 
@@ -83,6 +83,11 @@ const createWindow = async () => {
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
   mainWindow.on('ready-to-show', () => {
+    mainWindow?.webContents.send(
+      'changeTheme',
+      nativeTheme.shouldUseDarkColors
+    );
+
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -91,6 +96,13 @@ const createWindow = async () => {
     } else {
       mainWindow.show();
     }
+  });
+
+  nativeTheme.addListener('updated', () => {
+    mainWindow?.webContents.send(
+      'changeTheme',
+      nativeTheme.shouldUseDarkColors
+    );
   });
 
   mainWindow.on('closed', () => {

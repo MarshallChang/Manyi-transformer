@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'transform' | 'chooseFolder';
+export type Channels = 'transform' | 'chooseFolder' | 'changeTheme';
 
 const electronHandler = {
   ipcRenderer: {
