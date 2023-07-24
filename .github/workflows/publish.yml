@@ -6,7 +6,28 @@ on:
       - main
 
 jobs:
+  release-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: git config
+        run: |
+          git config user.name "MarshallChang"
+          git config user.email "dreamtaleman@gmail.com"
+      - name: Install Node and NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm install
+      - run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   publish-windows:
+    needs: release-changelog
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -16,8 +37,6 @@ jobs:
     steps:
       - name: Checkout git repo
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Install Node and NPM
         uses: actions/setup-node@v3
@@ -31,16 +50,6 @@ jobs:
           npm run postinstall
           npm run build
 
-      - name: Git config
-        run: |
-          git config user.name "MarshallChang"
-          git config user.email "dreamtaleman@gmail.com"
-
-      - name: CHANGLOG
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npm run release
-
       - name: Publish releases
         env:
           # CSC_LINK: ${{ secrets.CSC_LINK }}
@@ -50,6 +59,7 @@ jobs:
         run: |
           npm exec electron-builder -- --publish always --win
   publish-mac:
+    needs: release-changelog
     runs-on: ${{ matrix.os }}
 
     strategy:
