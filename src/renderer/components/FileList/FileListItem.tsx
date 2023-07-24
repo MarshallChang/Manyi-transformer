@@ -42,15 +42,15 @@ export default function FileListItem({
   deleteFile,
 }: FileListItemPropsType) {
   return (
-    <div className="rounded-md mb-5 bg-[#F5F7FB] py-2 px-4">
+    <div className="rounded-md mb-5 bg-slate-50 dark:bg-slate-900 py-2 px-4">
       <div className="flex items-center justify-between">
-        <span className="truncate pr-3 text-sm font-medium text-[#07074D]  max-w-[80%]">
+        <span className="truncate pr-3 text-sm font-medium text-slate-900 dark:text-slate-50 max-w-[80%]">
           {choosedFile.file.name}
         </span>
 
         <button
           type="button"
-          className="text-[#07074D]"
+          className="text-slate-900 dark:text-slate-50"
           onClick={() => (showDelete ? deleteFile(index) : '')}
         >
           {/* eslint-disable-next-line no-nested-ternary */}
@@ -64,10 +64,10 @@ export default function FileListItem({
         </button>
       </div>
       <div className="flex items-center justify-between mt-4">
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-gray-500 dark:text-gray-400">
           Original Size: {formatBytesFileSizeToMB(choosedFile.file.size)}
         </span>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-gray-500 dark:text-gray-400">
           {choosedFile.afterSize > 0 &&
             `After Size: ${formatBytesFileSizeToMB(choosedFile.afterSize)}`}
         </span>

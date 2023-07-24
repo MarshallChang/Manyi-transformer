@@ -127,7 +127,7 @@ export default function Transformer() {
   };
 
   return (
-    <div className="w-full h-full flex items-center ">
+    <div className="w-full h-full flex items-center bg-default-bg dark:bg-default-dark-bg">
       <div className="flex h-full flex-col px-6 py-12 lg:px-8 w-96 flex-shrink-0">
         <div className="w-full h-36">
           <Dropzone
@@ -173,7 +173,7 @@ export default function Transformer() {
           <div>
             <button
               type="button"
-              className="flex w-full justify-center rounded-md transition-all duration-500 bg-gradient-to-r from-emerald-400 via-purple-500 to-cyan-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-size-200 bg-pos-0 hover:bg-pos-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-300 disabled:from-slate-500 disabled:via-slate-500 disabled:to-slate-500 uppercase"
+              className="flex w-full justify-center rounded-md transition-all duration-500 bg-gradient-to-r disabled:from-slate-500 disabled:via-slate-500 disabled:to-slate-500 dark:disabled:from-slate-600 dark:disabled:via-slate-600 dark:disabled:to-slate-600 from-emerald-400 dark:from-emerald-600 via-purple-500 dark:via-purple-700 to-cyan-400 dark:to-cyan-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-size-200 bg-pos-0 hover:bg-pos-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-300 dark:focus-visible:outline-stone-600  uppercase"
               disabled={disableTransform}
               onClick={transform}
             >
@@ -186,7 +186,7 @@ export default function Transformer() {
             <div>
               <button
                 type="button"
-                className="flex w-full justify-center rounded-md transition-all duration-500 bg-gradient-to-r from-stone-500 via-slate-400 to-stone-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-size-200 bg-pos-0 hover:bg-pos-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-300 disabled:bg-slate-500 uppercase"
+                className="flex w-full justify-center rounded-md transition-all duration-500 bg-gradient-to-r from-stone-500 dark:from-stone-700 via-slate-400 dark:via-slate-600 to-stone-700 dark:to-stone-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-size-200 bg-pos-0 hover:bg-pos-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-300 dark:focus-visible:outline-stone-600 disabled:bg-slate-500 uppercase"
                 disabled={disableTransform}
                 onClick={reset}
               >

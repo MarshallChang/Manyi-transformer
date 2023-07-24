@@ -9,6 +9,8 @@ export default function Theme({ children }: any) {
   });
 
   return (
-    <div className={`${shouldUseDarkColors ? 'dark' : ''}`}>{children}</div>
+    <div className={`w-full h-full ${shouldUseDarkColors ? 'dark' : ''}`}>
+      {children}
+    </div>
   );
 }
