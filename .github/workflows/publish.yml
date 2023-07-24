@@ -33,8 +33,8 @@ jobs:
 
       - name: Git config
         run: |
-        git config user.name "MarshallChang"
-        git config user.email "dreamtaleman@gmail.com"
+          git config user.name "MarshallChang"
+          git config user.email "dreamtaleman@gmail.com"
 
       - name: CHANGLOG
         env:
