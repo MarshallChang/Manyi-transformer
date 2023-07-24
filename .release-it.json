@@ -5,9 +5,6 @@
   "github": {
     "release": true
   },
-  "npm": {
-    "publish": false
-  },
   "plugins": {
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
