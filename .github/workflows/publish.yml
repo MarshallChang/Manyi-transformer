@@ -6,33 +6,12 @@ on:
       - main
 
 jobs:
-  release-changelog:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: git config
-        run: |
-          git config user.name "MarshallChang"
-          git config user.email "dreamtaleman@gmail.com"
-      - name: Install Node and NPM
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: npm
-      - run: npm install
-      - run: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-  publish-windows:
-    needs: release-changelog
+  publish:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, macos-latest]
 
     steps:
       - name: Checkout git repo
@@ -50,46 +29,20 @@ jobs:
           npm run postinstall
           npm run build
 
-      - name: Publish releases
+      - name: Publish windows releases
         env:
           # CSC_LINK: ${{ secrets.CSC_LINK }}
           # CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          # This is used for uploading release assets to github
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        if: matrix.os == 'windows-latest'
         run: |
           npm exec electron-builder -- --publish always --win
-  publish-mac:
-    needs: release-changelog
-    runs-on: ${{ matrix.os }}
 
-    strategy:
-      matrix:
-        os: [macos-latest]
-
-    steps:
-      - name: Checkout git repo
-        uses: actions/checkout@v3
-
-      - name: Install Node and NPM
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: npm
-
-      - name: Install and build
-        run: |
-          npm install
-          npm run postinstall
-          npm run build
-
-      - name: Publish releases
+      - name: Publish Mac releases
         env:
-          # These values are used for auto updates signing
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASS }}
-          # CSC_LINK: ${{ secrets.CSC_LINK }}
-          # CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          # This is used for uploading release assets to github
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        if: matrix.os == 'macos-latest'
         run: |
           npm exec electron-builder -- --publish always --mac

@@ -1,7 +1,8 @@
 {
   "git": {
     "commitMessage": "chore: release v${version}",
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": false,
+    "draft": true
   },
   "github": {
     "release": true
@@ -12,6 +13,8 @@
   "plugins": {
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
+      "ignoreRecommendedBump": true,
+      "strictSemVer": true,
       "preset": {
         "name": "conventionalcommits",
         "types": [
