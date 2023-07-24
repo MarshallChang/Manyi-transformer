@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout git repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install Node and NPM
         uses: actions/setup-node@v3
@@ -28,6 +30,16 @@ jobs:
           npm install
           npm run postinstall
           npm run build
+
+      - name: Git config
+        run: |
+        git config user.name "MarshallChang"
+        git config user.email "dreamtaleman@gmail.com"
+
+      - name: CHANGLOG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npm run release
 
       - name: Publish releases
         env:
