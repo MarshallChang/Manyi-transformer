@@ -2,14 +2,17 @@ import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Routes from './routes';
-import Theme from './theme/ThemeProvider';
+import ThemeProvider from './theme/ThemeProvider';
+import StoreProvider from './store/StoreProvider';
 
 export default function App() {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Theme>
-        <Routes />
-      </Theme>
-    </DndProvider>
+    <ThemeProvider>
+      <StoreProvider>
+        <DndProvider backend={HTML5Backend}>
+          <Routes />
+        </DndProvider>
+      </StoreProvider>
+    </ThemeProvider>
   );
 }

@@ -3,38 +3,28 @@ import Dropzone from 'renderer/components/Dropzone';
 import SelectComponent from 'renderer/components/Select';
 import FileList from 'renderer/components/FileList/FileList';
 import { getCompressionRadio } from 'renderer/utils';
-import { ChoosedFile, LoadingStatus, Option } from 'common';
+import { ChoosedFile, LoadingStatus } from 'common';
 import FolderSelector from 'renderer/components/FolderSelector';
 import Switcher from 'renderer/components/Switcher';
-
-const textureOptions: Option[] = [
-  { id: 1, name: 'webp', value: 'webp' },
-  { id: 2, name: 'png', value: 'png' },
-  { id: 3, name: 'jpeg', value: 'jpeg' },
-];
-
-const resolutionOptions: Option[] = [
-  { id: 1, name: '1024', value: 1024 },
-  { id: 2, name: '2048', value: 2048 },
-  { id: 3, name: '4096', value: 4096 },
-];
+import { useStore } from 'renderer/store/StoreProvider';
 
 export default function Transformer() {
-  const [textureSelected, setTextureSelected] = useState<Option>(
-    textureOptions[window.electron.store.get('textureSelectedIndex') || 0]
-  );
-  const [resolutionSelected, setResolutionSelected] = useState<Option>(
-    resolutionOptions[window.electron.store.get('resolutionSelectedIndex') || 0]
-  );
+  const {
+    textureOptions,
+    textureSelected,
+    updateTextureSelected,
+    resolutionOptions,
+    resolutionSelected,
+    updateResolutionSelected,
+    keepName,
+    updateKeepName,
+    defaultDownloadPath,
+    updateDefaultDownloadPath,
+  } = useStore();
+
   const [choosedFiles, setChoosedFiles] = useState<ChoosedFile[]>([]);
   const [disableTransform, setDisableTransform] = useState(true);
   const [startTransformAll, setStartTransformAll] = useState(false);
-  const [savePath, setSavePath] = useState<string>(
-    window.electron.store.get('defaultDownloadPath') as string
-  );
-  const [keepName, setKeepName] = useState<boolean>(
-    window.electron.store.get('keepName') as boolean
-  );
 
   useEffect(() => {
     if (choosedFiles && choosedFiles.length > 0) {
@@ -116,16 +106,6 @@ export default function Transformer() {
     setStartTransformAll(false);
   };
 
-  const selectPath = (value: string) => {
-    window.electron.store.set('defaultDownloadPath', value);
-    setSavePath(value);
-  };
-
-  const hanleKeepName = (value: boolean) => {
-    window.electron.store.set('keepName', value);
-    setKeepName(value);
-  };
-
   return (
     <div className="w-full h-full flex items-center bg-default-bg dark:bg-default-dark-bg">
       <div className="flex h-full flex-col px-6 py-12 lg:px-8 w-96 flex-shrink-0">
@@ -144,7 +124,7 @@ export default function Transformer() {
             label="Texture Type"
             options={textureOptions}
             value={textureSelected}
-            onChange={setTextureSelected}
+            onChange={updateTextureSelected}
           />
         </div>
         <div className="mt-4">
@@ -152,21 +132,21 @@ export default function Transformer() {
             label="Resolution"
             options={resolutionOptions}
             value={resolutionSelected}
-            onChange={setResolutionSelected}
+            onChange={updateResolutionSelected}
           />
         </div>
         <div className="mt-4">
           <FolderSelector
             label="Output Path"
-            value={savePath}
-            onChange={selectPath}
+            value={defaultDownloadPath}
+            onChange={updateDefaultDownloadPath}
           />
         </div>
         <div className="my-4">
           <Switcher
             label="Keep File Name"
             value={keepName}
-            onChange={hanleKeepName}
+            onChange={updateKeepName}
           />
         </div>
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">

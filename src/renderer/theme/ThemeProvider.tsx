@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Theme({ children }: any) {
+export default function ThemeProvider({ children }: any) {
   const [shouldUseDarkColors, setShouldUseDarkColors] =
     useState<boolean>(false);
 

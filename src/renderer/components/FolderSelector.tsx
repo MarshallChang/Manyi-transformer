@@ -1,14 +1,12 @@
+import { memo } from 'react';
+
 export type FolderSelectorPropsType = {
   label: string;
   value: string;
   onChange: (path: string) => void;
 };
 
-export default function FolderSelector({
-  label,
-  value,
-  onChange,
-}: FolderSelectorPropsType) {
+function FolderSelector({ label, value, onChange }: FolderSelectorPropsType) {
   const selectPath = async () => {
     const folder = await window.electron.ipcRenderer.invoke('chooseFolder', {
       defaultPath: value,
@@ -35,3 +33,5 @@ export default function FolderSelector({
     </div>
   );
 }
+
+export default memo(FolderSelector);

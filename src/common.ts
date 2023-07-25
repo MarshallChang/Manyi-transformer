@@ -25,3 +25,10 @@ export type ChoosedFile = {
 };
 
 export type TextureTypes = 'png' | 'jpg' | 'webp';
+
+export type StoreType = {
+  keepName: boolean;
+  textureSelectedIndex: number;
+  resolutionSelectedIndex: number;
+  defaultDownloadPath: string;
+};
