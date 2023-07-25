@@ -1,5 +1,14 @@
 
 
+## [1.0.2](https://github.com/MarshallChang/Manyi-transformer/compare/v1.0.1...v1.0.2) (2023-07-25)
+
+
+### Features
+
+* add darkmode, add settings modal, add heroicons, update menu ([65774b2](https://github.com/MarshallChang/Manyi-transformer/commit/65774b26b9c02b6ba958cd79a8988de4bc17021c))
+* add store provider to control electron store ([201e206](https://github.com/MarshallChang/Manyi-transformer/commit/201e206f69c7ead6df45970f8ea73c42ff54e6f2))
+* support Dark Mode ([bcefb87](https://github.com/MarshallChang/Manyi-transformer/commit/bcefb87bf314887944e49653a07296410b89270e))
+
 ## [1.0.1](https://github.com/MarshallChang/Manyi-transformer/compare/v1.0.0...v1.0.1) (2023-07-24)
 
 
