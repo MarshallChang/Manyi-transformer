@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatBytesFileSizeToMB } from 'renderer/utils';
 import { ChoosedFile, LoadingStatus } from 'common';
-import { ReactComponent as Close } from '../../icons/close.svg';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 export type FileListItemPropsType = {
   index: number;
@@ -55,7 +55,7 @@ export default function FileListItem({
         >
           {/* eslint-disable-next-line no-nested-ternary */}
           {showDelete ? (
-            <Close />
+            <XMarkIcon className="h-4 w-4" />
           ) : choosedFile.loading === LoadingStatus.LOADING ? (
             <TransformLoader />
           ) : (

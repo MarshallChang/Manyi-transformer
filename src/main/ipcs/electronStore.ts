@@ -8,6 +8,7 @@ const store = new Store<StoreType>({
     defaultDownloadPath: app.getPath('downloads'),
     textureSelectedIndex: 0,
     resolutionSelectedIndex: 0,
+    appearance: 'System',
   },
 });
 

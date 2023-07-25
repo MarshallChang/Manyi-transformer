@@ -24,11 +24,14 @@ export type ChoosedFile = {
   loading: LoadingStatus;
 };
 
-export type TextureTypes = 'png' | 'jpg' | 'webp';
+export type TextureType = 'png' | 'jpg' | 'webp';
+
+export type AppearanceType = 'System' | 'Light' | 'Dark';
 
 export type StoreType = {
   keepName: boolean;
   textureSelectedIndex: number;
   resolutionSelectedIndex: number;
   defaultDownloadPath: string;
+  appearance: AppearanceType;
 };

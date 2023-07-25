@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Option } from 'common';
+import { AppearanceType, Option } from 'common';
 import React, {
   createContext,
   useCallback,
@@ -20,6 +20,8 @@ const resolutionOptions: Option[] = [
   { id: 3, name: '4096', value: 4096 },
 ];
 
+const appearanceOptions: AppearanceType[] = ['System', 'Light', 'Dark'];
+
 export type StoreContextType = {
   textureOptions: Option[];
   textureSelected: Option;
@@ -31,6 +33,9 @@ export type StoreContextType = {
   updateKeepName: (keepName: boolean) => void;
   defaultDownloadPath: string;
   updateDefaultDownloadPath: (defaultDownloadPath: string) => void;
+  appearanceOptions: AppearanceType[];
+  appearanceSelected: AppearanceType;
+  updateAppearanceSelected: (appearance: AppearanceType) => void;
 };
 
 const StoreContext = createContext<StoreContextType>({
@@ -50,6 +55,11 @@ const StoreContext = createContext<StoreContextType>({
   defaultDownloadPath: window.electron.store.get('defaultDownloadPath'),
   updateDefaultDownloadPath: (defaultDownloadPath) =>
     window.electron.store.set('defaultDownloadPath', defaultDownloadPath),
+  appearanceOptions,
+  appearanceSelected: 'System',
+  updateAppearanceSelected: (appearance) => {
+    window.electron.store.set('appearance', appearance);
+  },
 });
 
 export default function StoreProvider({ children }: any) {
@@ -66,6 +76,10 @@ export default function StoreProvider({ children }: any) {
   );
   const [defaultDownloadPath, setDefaultDownloadPath] = useState<string>(
     window.electron.store.get('defaultDownloadPath')
+  );
+
+  const [appearanceSelected, setAppearanceSelected] = useState<AppearanceType>(
+    window.electron.store.get('appearance')
   );
 
   const updateTextureSelected = useCallback(
@@ -102,6 +116,14 @@ export default function StoreProvider({ children }: any) {
     [setDefaultDownloadPath]
   );
 
+  const updateAppearanceSelected = useCallback(
+    (appearance: AppearanceType) => {
+      setAppearanceSelected(appearance);
+      window.electron.store.set('appearance', appearance);
+    },
+    [setAppearanceSelected]
+  );
+
   const value = useMemo(
     () => ({
       textureOptions,
@@ -114,6 +136,9 @@ export default function StoreProvider({ children }: any) {
       updateKeepName,
       defaultDownloadPath,
       updateDefaultDownloadPath,
+      appearanceOptions,
+      appearanceSelected,
+      updateAppearanceSelected,
     }),
     [
       textureOptions,
@@ -126,6 +151,9 @@ export default function StoreProvider({ children }: any) {
       updateKeepName,
       defaultDownloadPath,
       updateDefaultDownloadPath,
+      appearanceOptions,
+      appearanceSelected,
+      updateAppearanceSelected,
     ]
   );
 

@@ -51,6 +51,20 @@ export default class MenuBuilder {
       label: 'Manyi Transformer',
       submenu: [
         {
+          label: 'About Manyi Transformer',
+          selector: 'orderFrontStandardAboutPanel:',
+        },
+        { type: 'separator' },
+        {
+          label: 'Settings',
+          accelerator: 'Command+,',
+          click: () => {
+            this.mainWindow.webContents.send('openSettings');
+          },
+        },
+        { type: 'separator' },
+        { label: 'Services', submenu: [] },
+        {
           label: 'Quit',
           accelerator: 'Command+Q',
           click: () => {
@@ -136,6 +150,21 @@ export default class MenuBuilder {
             click: () => {
               this.mainWindow.close();
             },
+          },
+        ],
+      },
+      {
+        label: 'Settings',
+        submenu: [
+          {
+            label: 'Settings',
+            click: () => {
+              this.mainWindow.webContents.send('openSettings');
+            },
+          },
+          {
+            label: 'About Manyi Transformer',
+            selector: 'orderFrontStandardAboutPanel:',
           },
         ],
       },

@@ -7,12 +7,12 @@ import StoreProvider from './store/StoreProvider';
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <StoreProvider>
+    <StoreProvider>
+      <ThemeProvider>
         <DndProvider backend={HTML5Backend}>
           <Routes />
         </DndProvider>
-      </StoreProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </StoreProvider>
   );
 }
