@@ -1,11 +1,16 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import Transformer from '../pages/Transformer';
+import Layout from 'renderer/layout';
+import ROUTES from './routes';
 
 export default function MyRoutes() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Transformer />} />
+        <Route path="/" element={<Layout />}>
+          {ROUTES.map((route) => (
+            <Route path={route.path} element={route.element} />
+          ))}
+        </Route>
       </Routes>
     </Router>
   );
