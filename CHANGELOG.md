@@ -1,5 +1,12 @@
 
 
+## [1.1.2](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.1...v1.1.2) (2023-07-28)
+
+
+### Bug Fixes
+
+* lib's path cannot found ([e0b2413](https://github.com/MarshallChang/Manyi-transformer/commit/e0b2413976bb011fa94bd50c93462d72dec01d9e))
+
 ## [1.1.1](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.0...v1.1.1) (2023-07-28)
 
 
