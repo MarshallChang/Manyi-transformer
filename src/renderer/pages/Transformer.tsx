@@ -108,7 +108,7 @@ export default function Transformer() {
 
   return (
     <div className="w-full h-full flex items-center bg-default-bg dark:bg-default-dark-bg">
-      <div className="flex h-full flex-col px-6 py-12 lg:px-8 w-96 flex-shrink-0">
+      <div className="flex h-full flex-col p-6 lg:px-8 w-96 flex-shrink-0">
         <div className="w-full h-36">
           <Dropzone
             accept={{

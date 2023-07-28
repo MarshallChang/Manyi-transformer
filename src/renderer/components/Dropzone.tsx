@@ -4,16 +4,22 @@ import { Accept, useDropzone } from 'react-dropzone';
 export type DropzonePropsType = {
   accept: Accept | undefined;
   acceptDesc: string;
+  multiple?: boolean;
+  noClick?: boolean;
   onDrop: (acceptedFiles: any[]) => void;
 };
 
 export default function Dropzone({
   accept,
   acceptDesc,
+  multiple,
+  noClick,
   onDrop,
 }: DropzonePropsType) {
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps } = useDropzone({
     accept,
+    multiple,
+    noClick,
     onDrop: (acceptedFiles) => {
       onDrop(acceptedFiles);
     },
@@ -37,8 +43,12 @@ export default function Dropzone({
             {acceptDesc}
           </p>
         </div>
-        <input {...getInputProps()} />
       </label>
     </div>
   );
 }
+
+Dropzone.defaultProps = {
+  multiple: true,
+  noClick: false,
+};

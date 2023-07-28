@@ -4,9 +4,15 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
+import { WebGLRenderer } from 'three';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 
 const textureOptions: Option[] = [
   { id: 1, name: 'webp', value: 'webp' },
@@ -22,6 +28,18 @@ const resolutionOptions: Option[] = [
 
 const appearanceOptions: AppearanceType[] = ['System', 'Light', 'Dark'];
 
+let gltfLoader: GLTFLoader;
+if (window !== undefined) {
+  const dracoloader = new DRACOLoader().setDecoderPath('./libs/draco/gltf/');
+  const ktx2Loader = new KTX2Loader().setTranscoderPath('./libs/basis/');
+
+  gltfLoader = new GLTFLoader()
+    .setCrossOrigin('anonymous')
+    .setDRACOLoader(dracoloader)
+    .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
+    .setMeshoptDecoder(MeshoptDecoder);
+}
+
 export type StoreContextType = {
   textureOptions: Option[];
   textureSelected: Option;
@@ -36,6 +54,13 @@ export type StoreContextType = {
   appearanceOptions: AppearanceType[];
   appearanceSelected: AppearanceType;
   updateAppearanceSelected: (appearance: AppearanceType) => void;
+  fileArrayBuffer: ArrayBuffer | undefined;
+  setFileArrayBuffer: (fileArrayBuffer: ArrayBuffer) => void;
+  filename: string | undefined;
+  setFilename: (filename: string) => void;
+  textOriginalFile: string | undefined;
+  setTextOriginalFile: (textOriginalFile: string) => void;
+  gltfObj?: GLTF;
 };
 
 const StoreContext = createContext<StoreContextType>({
@@ -60,6 +85,12 @@ const StoreContext = createContext<StoreContextType>({
   updateAppearanceSelected: (appearance) => {
     window.electron.store.set('appearance', appearance);
   },
+  fileArrayBuffer: undefined,
+  setFileArrayBuffer: () => {},
+  filename: undefined,
+  setFilename: () => {},
+  textOriginalFile: undefined,
+  setTextOriginalFile: () => {},
 });
 
 export default function StoreProvider({ children }: any) {
@@ -81,6 +112,11 @@ export default function StoreProvider({ children }: any) {
   const [appearanceSelected, setAppearanceSelected] = useState<AppearanceType>(
     window.electron.store.get('appearance')
   );
+
+  const [fileArrayBuffer, setFileArrayBuffer] = useState<ArrayBuffer>();
+  const [filename, setFilename] = useState<string>();
+  const [textOriginalFile, setTextOriginalFile] = useState<string>();
+  const [gltfObj, setGLTFObj] = useState<GLTF>();
 
   const updateTextureSelected = useCallback(
     (option: Option) => {
@@ -124,6 +160,19 @@ export default function StoreProvider({ children }: any) {
     [setAppearanceSelected]
   );
 
+  const generatorScene = useCallback(async () => {
+    if (fileArrayBuffer && gltfLoader) {
+      const result: GLTF = await new Promise((resolve, reject) =>
+        gltfLoader.parse(fileArrayBuffer as ArrayBuffer, '', resolve, reject)
+      );
+      setGLTFObj(result);
+    }
+  }, [fileArrayBuffer, gltfLoader]);
+
+  useEffect(() => {
+    generatorScene();
+  }, [fileArrayBuffer, gltfLoader]);
+
   const value = useMemo(
     () => ({
       textureOptions,
@@ -139,6 +188,13 @@ export default function StoreProvider({ children }: any) {
       appearanceOptions,
       appearanceSelected,
       updateAppearanceSelected,
+      fileArrayBuffer,
+      setFileArrayBuffer,
+      filename,
+      setFilename,
+      textOriginalFile,
+      setTextOriginalFile,
+      gltfObj,
     }),
     [
       textureOptions,
@@ -154,6 +210,13 @@ export default function StoreProvider({ children }: any) {
       appearanceOptions,
       appearanceSelected,
       updateAppearanceSelected,
+      fileArrayBuffer,
+      setFileArrayBuffer,
+      filename,
+      setFilename,
+      textOriginalFile,
+      setTextOriginalFile,
+      gltfObj,
     ]
   );
 
