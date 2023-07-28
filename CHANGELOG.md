@@ -1,5 +1,13 @@
 
 
+## [1.1.0](https://github.com/MarshallChang/Manyi-transformer/compare/v1.0.2...v1.1.0) (2023-07-28)
+
+
+### Features
+
+* add menu bar ([a284ea0](https://github.com/MarshallChang/Manyi-transformer/commit/a284ea09fa0d84c30bbf1b0fc7c9767befc15bc1))
+* add model viewer by r3f ([966c81d](https://github.com/MarshallChang/Manyi-transformer/commit/966c81da2f757a8b8f12aca375b621403d2e3384))
+
 ## [1.0.2](https://github.com/MarshallChang/Manyi-transformer/compare/v1.0.1...v1.0.2) (2023-07-25)
 
 
