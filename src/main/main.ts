@@ -61,6 +61,10 @@ const createWindow = async () => {
     ? path.join(process.resourcesPath, 'assets')
     : path.join(__dirname, '../../assets');
 
+  const PUBLIC_LIBS_PATH = app.isPackaged
+    ? path.join(process.resourcesPath, 'public/libs')
+    : path.join(__dirname, '../../public/libs');
+
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
@@ -87,6 +91,7 @@ const createWindow = async () => {
       'changeTheme',
       nativeTheme.shouldUseDarkColors
     );
+    mainWindow?.webContents.send('publicLibsPath', PUBLIC_LIBS_PATH);
 
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');

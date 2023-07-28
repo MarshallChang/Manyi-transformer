@@ -30,14 +30,33 @@ const appearanceOptions: AppearanceType[] = ['System', 'Light', 'Dark'];
 
 let gltfLoader: GLTFLoader;
 if (window !== undefined) {
-  const dracoloader = new DRACOLoader().setDecoderPath('./libs/draco/gltf/');
-  const ktx2Loader = new KTX2Loader().setTranscoderPath('./libs/basis/');
-
-  gltfLoader = new GLTFLoader()
-    .setCrossOrigin('anonymous')
-    .setDRACOLoader(dracoloader)
-    .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
-    .setMeshoptDecoder(MeshoptDecoder);
+  const dev = process.env.NODE_ENV === 'development';
+  if (dev) {
+    const dracoloader = new DRACOLoader().setDecoderPath('./libs/draco/gltf/');
+    const ktx2Loader = new KTX2Loader().setTranscoderPath('./libs/basis/');
+    gltfLoader = new GLTFLoader()
+      .setCrossOrigin('anonymous')
+      .setDRACOLoader(dracoloader)
+      .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
+      .setMeshoptDecoder(MeshoptDecoder);
+  } else {
+    window.electron.ipcRenderer.on('publicLibsPath', (e) => {
+      if (e) {
+        const publicLibsPath = e as string;
+        const dracoloader = new DRACOLoader().setDecoderPath(
+          `${publicLibsPath}/draco/gltf/`
+        );
+        const ktx2Loader = new KTX2Loader().setTranscoderPath(
+          `${publicLibsPath}/basis/`
+        );
+        gltfLoader = new GLTFLoader()
+          .setCrossOrigin('anonymous')
+          .setDRACOLoader(dracoloader)
+          .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
+          .setMeshoptDecoder(MeshoptDecoder);
+      }
+    });
+  }
 }
 
 export type StoreContextType = {
