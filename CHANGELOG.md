@@ -1,5 +1,12 @@
 
 
+## [1.1.1](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.0...v1.1.1) (2023-07-28)
+
+
+### Bug Fixes
+
+* fixed Perf usage ([39685d1](https://github.com/MarshallChang/Manyi-transformer/commit/39685d192147a5239dad11ff2e6b58f698226df5))
+
 ## [1.1.0](https://github.com/MarshallChang/Manyi-transformer/compare/v1.0.2...v1.1.0) (2023-07-28)
 
 
