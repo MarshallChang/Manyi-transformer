@@ -32,7 +32,7 @@ export default function CanvasViewer() {
         </Stage>
       </Suspense>
       <OrbitControls makeDefault />
-      <Perf position="" />
+      <Perf />
     </Canvas>
   );
 }
