@@ -1,5 +1,12 @@
 
 
+## [1.1.5](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.4...v1.1.5) (2023-07-31)
+
+
+### Bug Fixes
+
+* try use node@14 on github action to fix wasm error ([795933b](https://github.com/MarshallChang/Manyi-transformer/commit/795933b94aeb171a83843549ae9c6821287da8a9))
+
 ## [1.1.4](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.3...v1.1.4) (2023-07-31)
 
 
