@@ -23,11 +23,10 @@ jobs:
           node-version: 16
           cache: npm
 
-      - name: Install and build
+      - name: Install
         run: |
           npm install
           npm run postinstall
-          npm run build
 
       - name: Publish windows releases
         env:
@@ -36,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         if: matrix.os == 'windows-latest'
         run: |
-          npm exec electron-builder -- --publish always --win
+          npm run package:win
 
       - name: Publish Mac releases
         env:
@@ -45,4 +44,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         if: matrix.os == 'macos-latest'
         run: |
-          npm exec electron-builder -- --publish always --mac
+          npm run package:mac
