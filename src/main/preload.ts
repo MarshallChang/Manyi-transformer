@@ -7,7 +7,6 @@ export type Channels =
   | 'chooseFolder'
   | 'changeTheme'
   | 'openSettings'
-  | 'publicLibsPath'
   | 'dark-mode:light'
   | 'dark-mode:dark'
   | 'dark-mode:system';

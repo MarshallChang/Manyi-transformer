@@ -12,7 +12,6 @@ import path from 'path';
 import { app, BrowserWindow, nativeTheme, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import fs from 'fs';
 
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -62,10 +61,6 @@ const createWindow = async () => {
     ? path.join(process.resourcesPath, 'assets')
     : path.join(__dirname, '../../assets');
 
-  const PUBLIC_LIBS_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'public/libs')
-    : path.join(__dirname, '../../public/libs');
-
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
@@ -92,18 +87,7 @@ const createWindow = async () => {
       'changeTheme',
       nativeTheme.shouldUseDarkColors
     );
-    mainWindow?.webContents.send('publicLibsPath', PUBLIC_LIBS_PATH);
-    fs.readFile(
-      `${PUBLIC_LIBS_PATH}/draco/gltf/draco_wasm_wrapper.js`,
-      (err, data) => {
-        if (err) {
-          console.log('read:draco_wasm_wrapper.js:error:', err);
-        }
-        if (data) {
-          console.log('read:draco_wasm_wrapper.js:data:', data.toString());
-        }
-      }
-    );
+
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }

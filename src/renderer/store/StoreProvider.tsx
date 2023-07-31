@@ -30,45 +30,18 @@ const appearanceOptions: AppearanceType[] = ['System', 'Light', 'Dark'];
 
 let gltfLoader: GLTFLoader;
 if (window !== undefined) {
-  const dev = process.env.NODE_ENV === 'development';
-  if (dev) {
-    const dracoloader = new DRACOLoader().setDecoderPath('./libs/draco/gltf/');
-    const ktx2Loader = new KTX2Loader().setTranscoderPath('./libs/basis/');
-    gltfLoader = new GLTFLoader()
-      .setCrossOrigin('anonymous')
-      .setDRACOLoader(dracoloader)
-      .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
-      .setMeshoptDecoder(MeshoptDecoder);
-  } else {
-    window.electron.ipcRenderer.on('publicLibsPath', (e) => {
-      if (e) {
-        const publicLibsPath = e as string;
-        const dracoloader = new DRACOLoader().setDecoderPath(
-          `${publicLibsPath}/draco/gltf/`
-        );
-        const ktx2Loader = new KTX2Loader().setTranscoderPath(
-          `${publicLibsPath}/basis/`
-        );
-        gltfLoader = new GLTFLoader()
-          .setCrossOrigin('anonymous')
-          .setDRACOLoader(dracoloader)
-          .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
-          .setMeshoptDecoder(MeshoptDecoder);
-      }
-    });
-    // const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`;
-    // const dracoloader = new DRACOLoader().setDecoderPath(
-    //   `${THREE_PATH}/examples/jsm/libs/draco/gltf/`
-    // );
-    // const ktx2Loader = new KTX2Loader().setTranscoderPath(
-    //   `${THREE_PATH}/examples/jsm/libs/basis/`
-    // );
-    // gltfLoader = new GLTFLoader()
-    //   .setCrossOrigin('anonymous')
-    //   .setDRACOLoader(dracoloader)
-    //   .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
-    //   .setMeshoptDecoder(MeshoptDecoder);
-  }
+  const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`;
+  const dracoloader = new DRACOLoader().setDecoderPath(
+    `${THREE_PATH}/examples/jsm/libs/draco/gltf/`
+  );
+  const ktx2Loader = new KTX2Loader().setTranscoderPath(
+    `${THREE_PATH}/examples/jsm/libs/basis/`
+  );
+  gltfLoader = new GLTFLoader()
+    .setCrossOrigin('anonymous')
+    .setDRACOLoader(dracoloader)
+    .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
+    .setMeshoptDecoder(MeshoptDecoder);
 }
 
 export type StoreContextType = {
