@@ -1,5 +1,12 @@
 
 
+## [1.1.3](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.2...v1.1.3) (2023-07-31)
+
+
+### Bug Fixes
+
+* try to fix package error of github actions ([eb5d05b](https://github.com/MarshallChang/Manyi-transformer/commit/eb5d05be01f8ee529461ee3da161e59aa5d06855))
+
 ## [1.1.2](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.1...v1.1.2) (2023-07-28)
 
 
