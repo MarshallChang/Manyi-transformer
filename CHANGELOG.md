@@ -1,5 +1,12 @@
 
 
+## [1.1.6](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.5...v1.1.6) (2023-07-31)
+
+
+### Bug Fixes
+
+* try test if the main electron can read public folder files or can't ([ac2c9ef](https://github.com/MarshallChang/Manyi-transformer/commit/ac2c9ef08dfd557b78e4bb598604f8ca3ebacc25))
+
 ## [1.1.5](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.4...v1.1.5) (2023-07-31)
 
 
