@@ -1,5 +1,12 @@
 
 
+## [1.1.4](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.3...v1.1.4) (2023-07-31)
+
+
+### Bug Fixes
+
+* try use decoder files from cdn to fix WebAssembly.instantiate error ([113dcad](https://github.com/MarshallChang/Manyi-transformer/commit/113dcadec2cee7f5224c4c699857d183e7c8356d))
+
 ## [1.1.3](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.2...v1.1.3) (2023-07-31)
 
 
