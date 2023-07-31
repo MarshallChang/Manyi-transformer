@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { WebGLRenderer } from 'three';
+import { WebGLRenderer, REVISION } from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader';
@@ -40,22 +40,34 @@ if (window !== undefined) {
       .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
       .setMeshoptDecoder(MeshoptDecoder);
   } else {
-    window.electron.ipcRenderer.on('publicLibsPath', (e) => {
-      if (e) {
-        const publicLibsPath = e as string;
-        const dracoloader = new DRACOLoader().setDecoderPath(
-          `${publicLibsPath}/draco/gltf/`
-        );
-        const ktx2Loader = new KTX2Loader().setTranscoderPath(
-          `${publicLibsPath}/basis/`
-        );
-        gltfLoader = new GLTFLoader()
-          .setCrossOrigin('anonymous')
-          .setDRACOLoader(dracoloader)
-          .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
-          .setMeshoptDecoder(MeshoptDecoder);
-      }
-    });
+    // window.electron.ipcRenderer.on('publicLibsPath', (e) => {
+    //   if (e) {
+    //     const publicLibsPath = e as string;
+    //     const dracoloader = new DRACOLoader().setDecoderPath(
+    //       `${publicLibsPath}/draco/gltf/`
+    //     );
+    //     const ktx2Loader = new KTX2Loader().setTranscoderPath(
+    //       `${publicLibsPath}/basis/`
+    //     );
+    //     gltfLoader = new GLTFLoader()
+    //       .setCrossOrigin('anonymous')
+    //       .setDRACOLoader(dracoloader)
+    //       .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
+    //       .setMeshoptDecoder(MeshoptDecoder);
+    //   }
+    // });
+    const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`;
+    const dracoloader = new DRACOLoader().setDecoderPath(
+      `${THREE_PATH}/examples/jsm/libs/draco/gltf/`
+    );
+    const ktx2Loader = new KTX2Loader().setTranscoderPath(
+      `${THREE_PATH}/examples/jsm/libs/basis/`
+    );
+    gltfLoader = new GLTFLoader()
+      .setCrossOrigin('anonymous')
+      .setDRACOLoader(dracoloader)
+      .setKTX2Loader(ktx2Loader.detectSupport(new WebGLRenderer()))
+      .setMeshoptDecoder(MeshoptDecoder);
   }
 }
 
