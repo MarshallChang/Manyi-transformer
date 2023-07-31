@@ -1,5 +1,13 @@
 
 
+## [1.2.0](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.6...v1.2.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* fix decoder files error, remove public folder, use cdn files ([0db1343](https://github.com/MarshallChang/Manyi-transformer/commit/0db134392d361c30c0d71615a4ecd96ae7a671c5))
+* fix jest error ([651d7cc](https://github.com/MarshallChang/Manyi-transformer/commit/651d7cc1ee33d5e5a27d6b1166c8456275e82d9d))
+
 ## [1.1.6](https://github.com/MarshallChang/Manyi-transformer/compare/v1.1.5...v1.1.6) (2023-07-31)
 
 
